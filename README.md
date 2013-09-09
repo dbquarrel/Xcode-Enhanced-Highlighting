@@ -3,6 +3,27 @@ Xcode-Enhanced-Highlighting
 
 xclangspec files and color schemes for Xcode3 and Xcode5 that allow you to target the method names in definitions and declarations for special highlighting. For Xcode5 also supports special colors for blocks (class methods, instance methods, and closure blocks can have different colors). Some work is needed as it is not compatible with context highlighting (i.e. project identifiers).  
 
+I come from an Emacs background and am used to having function names in a high contrast color, which is easy to set up with Emacs highlighting packages. Xcode out of the box won't let you do this, unless you make some difficult modifications to the language parsing grammars. This is still a work in progress for Xcode5, especially for the header files as the ObjC++ langspec is required for all headers and I haven't modified that yet (lots of work).
+
+Example images are included as well as a few color schemes. 
+
+There is flexiblity to set individual colors for:
+
+- class method names
+- class method return type
+- class method parameter types
+- class method parameters
+
+- instance method names
+- instance method return type
+- instance method parameter types
+- instance method parameters
+
+- separate colors for class and instance method definition blocks
+- closure blocks ( i.e. ^{} type blocks) can be set to their own color as well
+
+There is a problem with Xcode5 in that setting colors by grammar vs. setting colors by context (i.e. what clang/llvm hands back after parsing) seems to be incompatible so far. So using these will currently disable things like being able to special-highlight project class names. I have left notes in the grammars where the area is to focus on if someone can improve this.
+
 
 == Special notes ==
 
