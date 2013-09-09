@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Colors</key>
+	<dict>
+		<key>Background</key>
+		<string>0.000 0.000 0.000</string>
+		<key>InsertionPoint</key>
+		<string>1.000 0.000 0.094</string>
+		<key>Selection</key>
+		<string>0.178 0.000 1.000</string>
+		<key>xcode.syntax.attribute</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.block</key>
+		<string>0.972 1.000 0.988</string>
+		<key>xcode.syntax.brackets</key>
+		<string>0.552 0.860 0.850</string>
+		<key>xcode.syntax.c.attribute</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.character</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.classmethod.declarator</key>
+		<string>0.937 0.291 0.000</string>
+		<key>xcode.syntax.comment</key>
+		<string>0.194 0.194 0.194</string>
+		<key>xcode.syntax.comment.doc</key>
+		<string>0.428 0.428 0.428</string>
+		<key>xcode.syntax.comment.doc.keyword</key>
+		<string>0.757 0.757 0.757</string>
+		<key>xcode.syntax.declaration.c.function</key>
+		<string>1.000 0.900 0.000</string>
+		<key>xcode.syntax.declaration.class</key>
+		<string>1.000 0.900 0.000</string>
+		<key>xcode.syntax.declaration.method</key>
+		<string>1.000 0.900 0.000</string>
+		<key>xcode.syntax.declaration.objc.interface</key>
+		<string>1.000 0.900 0.000</string>
+		<key>xcode.syntax.declaration.objc.protocol</key>
+		<string>1.000 0.900 0.000</string>
+		<key>xcode.syntax.definition.c.function</key>
+		<string>1.000 0.900 0.000</string>
+		<key>xcode.syntax.definition.class</key>
+		<string>1.000 0.900 0.000</string>
+		<key>xcode.syntax.definition.macro</key>
+		<string>0.000 0.874 0.037</string>
+		<key>xcode.syntax.definition.method</key>
+		<string>0.974 0.000 1.000</string>
+		<key>xcode.syntax.definition.objc.implementation</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.identifier</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.identifier.class</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.identifier.class.system</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.identifier.constant</key>
+		<string>0.369 0.874 0.466</string>
+		<key>xcode.syntax.identifier.constant.system</key>
+		<string>0.369 0.874 0.466</string>
+		<key>xcode.syntax.identifier.function</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.identifier.function.system</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.identifier.macro</key>
+		<string>0.000 0.874 0.037</string>
+		<key>xcode.syntax.identifier.macro.system</key>
+		<string>0.000 0.874 0.037</string>
+		<key>xcode.syntax.identifier.type</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.identifier.type.system</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.identifier.variable</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.identifier.variable.system</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.keyword</key>
+		<string>1.000 0.983 0.996</string>
+		<key>xcode.syntax.mark</key>
+		<string>1.000 0.032 0.209</string>
+		<key>xcode.syntax.method.declarator</key>
+		<string>1.000 0.900 0.000</string>
+		<key>xcode.syntax.method.parameter</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.method.type</key>
+		<string>0.000 0.604 0.604</string>
+		<key>xcode.syntax.name</key>
+		<string>1.000 0.900 0.000</string>
+		<key>xcode.syntax.name.partial</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.name.tree</key>
+		<string>1.000 0.900 0.000</string>
+		<key>xcode.syntax.number</key>
+		<string>0.974 0.972 1.000</string>
+		<key>xcode.syntax.plain</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.preprocessor</key>
+		<string>0.000 0.874 0.037</string>
+		<key>xcode.syntax.preprocessor.include</key>
+		<string>0.000 0.874 0.037</string>
+		<key>xcode.syntax.string</key>
+		<string>0.532 0.362 0.232</string>
+		<key>xcode.syntax.typedef</key>
+		<string>0.330 0.941 1.000</string>
+		<key>xcode.syntax.url</key>
+		<string>0.668 0.126 0.000</string>
+		<key>xcode.syntax.url.mail</key>
+		<string>0.668 0.473 0.178</string>
+	</dict>
+	<key>Fonts</key>
+	<dict>
+		<key>xcode.syntax.plain</key>
+		<string>Monaco - 10.0</string>
+	</dict>
+</dict>
+</plist>

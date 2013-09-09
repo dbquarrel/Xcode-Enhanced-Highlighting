@@ -1,0 +1,1 @@
+[tally] [Versions/A/Resources] rm -rf /private/var/folders/*/*/*/com.apple.DeveloperTools/*/Xcode* ; rm -rf ~/Library/Developer/Xcode/DerivedData ; open /Applications/Xcode5-DP5.app

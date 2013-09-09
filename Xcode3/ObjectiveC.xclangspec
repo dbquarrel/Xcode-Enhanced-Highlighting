@@ -1,0 +1,1138 @@
+// C-based languages
+(
+
+/****************************************************************************/
+// MARK: Strings and Characters
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.string.objc";
+        Syntax = {
+            Start = "@\"";
+            EscapeChar = "\\";
+            End = "\"";
+            Type = "xcode.syntax.string";
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: Objective-C keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.objc.identifier";
+        Syntax = {
+            StartChars = "@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                // keywords from C
+/*
+// uncomment this stuff if you want the whole shebang of
+// types back in place 
+                "__alignof__",
+                "__asm__",
+                "__attribute__",
+                "__complex__",
+                "__extension__",
+                "__imag__",
+                "__label__",
+                "__real__",
+                "__restrict",
+                "__restrict__",
+                "__typeof__",
+                "_Bool",
+                "_Complex",
+                "_Imaginary",
+                "asm",
+                "auto",
+                "break",
+                "case",
+                "char",
+                "const",
+                "continue",
+                "default",
+                "do",
+                "double",
+                "else",
+                "enum",
+                "extern",
+                "float",
+                "for",
+                "goto",
+                "if",
+                "inline",
+                "int",
+                "long",
+                "pascal",
+                "register",
+                "restrict",
+                "return",
+                "short",
+                "signed",
+                "sizeof",
+                "static",
+                "struct",
+                "switch",
+                "typedef",
+                "typeof",
+                "union",
+                "unsigned",
+                "void",
+                "volatile",
+                "while",
+                "FALSE",
+                "NULL",
+                "TRUE",
+
+                // keywords from Objective-C
+                "__strong",
+                "__weak",
+                "bycopy",
+                "byref",
+                "in",
+                "inout",
+                "oneway",
+                "out",
+                "BOOL",
+                "IBAction",
+                "IBOutlet",
+                "IMP",
+                "NO",
+                "Nil",
+                "SEL",
+                "YES",
+                "id",
+                "nil",
+                "self",
+                "super",
+*/		
+                "NS_DURING",
+                "NS_ENDHANDLER",
+                "NS_HANDLER",
+                "NS_VALUERETURN",
+                "NS_VOIDRETURN",
+                "@catch",
+                "@class",
+                "@defs",
+                "@dynamic",
+                "@encode",
+                "@end",
+                "@finally",
+                "@implementation",
+                "@interface",
+                "@optional",
+                "@package",
+                "@private",
+                "@property",
+                "@protected",
+                "@protocol",
+                "@public",
+                "@required",
+                "@selector",
+                "@synchronized",
+                "@synthesize",
+                "@throw",
+                "@try",
+             );
+            Type = "xcode.syntax.keyword";
+	    AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.objc.interestingOperators";
+        Syntax = {
+            Words = (
+                "...",
+                "->",
+                ".",
+             );
+            Type = "xcode.syntax.plain";
+        };
+    },
+/****************************************************************************/
+// MARK: Objective-C Top-Level
+/****************************************************************************/
+    {
+        Identifier = "xcode.lang.objc";
+        Description = "Objective-C Coloring";
+        BasedOn = "xcode.lang.c";
+        IncludeInMenu = YES;
+        Name = "Objective-C";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.toplevel";
+            IncludeRules = (
+                "xcode.lang.objc.block",
+                "xcode.lang.objc.bracketexpr",
+                "xcode.lang.objc.parenexpr",
+                "xcode.lang.objc.interface",
+                "xcode.lang.objc.implementation",
+                "xcode.lang.objc.protocol.declaration",
+                "xcode.lang.objc.protocol",
+                "xcode.lang.objc.function.declaration",
+                "xcode.lang.objc.function.definition",
+                "xcode.lang.objc.typedef",
+                "xcode.lang.objc.initializer",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+
+/****************************************************************************/
+// MARK: Lexers
+/****************************************************************************/
+
+    // The following rule returns tokens to the other rules
+    {
+        Identifier = "xcode.lang.objc.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string.objc",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.objc.attribute",
+                "xcode.lang.objc.identifier",
+                "xcode.lang.number",
+                "xcode.lang.objc.interestingOperators",
+            );
+         };
+     },
+	
+    {
+        Identifier = "xcode.lang.objc.lexer.toplevel";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string.objc",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.objc.interface.declarator",
+                "xcode.lang.objc.implementation.declarator",
+                "xcode.lang.objc.protocol.declarator",
+                "xcode.lang.objc.property.declarator",
+                "xcode.lang.objc.attribute",
+                "xcode.lang.objc.identifier",
+                "xcode.lang.number",
+                "xcode.lang.objc.interestingOperators",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.objc.attribute";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.attribute";
+            Rules = (
+                "__attribute__",
+                "xcode.lang.objc.parenexpr.attribute",
+            );
+            Type = "xcode.syntax.c.attribute";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.lexer.attribute";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string.objc",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.objc.identifier",
+                "xcode.lang.number",
+                "xcode.lang.objc.interestingOperators",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.objc.parenexpr.attribute";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.attribute";
+            Start = "(";
+            End = ")";
+            Recursive = YES;
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.objc.implementation.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "@implementation",
+                "xcode.lang.objc.classnameclause",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.interface.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "@interface",
+                "xcode.lang.objc.classnameclause",
+                ":?",
+                "xcode.lang.objc.classname?",
+                "xcode.lang.objc.protocolclause?",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.protocol.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "@protocol",
+                "xcode.lang.objc.protocolname",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.classnameclause";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "xcode.lang.objc.classname",
+                "xcode.lang.objc.categoryclause?",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.classname";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "xcode.lang.objc.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.protocolname";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "xcode.lang.objc.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.protocol.openangle";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "<",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.protocol.closeangle";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                ">",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.protocolclause";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "xcode.lang.objc.protocol.openangle",
+                "xcode.lang.objc.protocolname",
+                "xcode.lang.objc.protocol.protocollist*",
+                "xcode.lang.objc.protocol.closeangle",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.categoryname";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "xcode.lang.objc.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.category.openparen";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "(",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.category.closeparen";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                ")",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.categoryclause";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "xcode.lang.objc.category.openparen",
+                "xcode.lang.objc.categoryname",
+                "xcode.lang.objc.category.closeparen"
+            );
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: Interfaces/Implementations
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.objc.protocol.declaration";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.toplevel";
+            Rules = (
+                "xcode.lang.objc.protocol.declarator",
+                "xcode.lang.objc.protocol.protocolclause*",
+                ";",
+            );
+            Type = "xcode.syntax.declaration.objc.protocol";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.protocol.protocollist";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                ",",
+                "xcode.lang.objc.protocolname",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.protocol";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.toplevel";
+            Start = "xcode.lang.objc.protocol.declarator";
+            End = "@end";
+            Foldable = YES;
+            IncludeRules = (
+                "xcode.lang.objc.function.declaration",
+                "xcode.lang.objc.method.declaration",
+                "xcode.lang.objc.classmethod.declaration",
+                "xcode.lang.objc.property.declaration",
+                "xcode.lang.objc.block",
+                "xcode.lang.objc.bracketexpr",
+                "xcode.lang.objc.parenexpr",
+            );
+            Type = "xcode.syntax.declaration.objc.protocol";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.interface";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.toplevel";
+            Start = "xcode.lang.objc.interface.declarator";
+            End = "@end";
+            Foldable = YES;
+            IncludeRules = (
+                "xcode.lang.objc.function.declaration",
+                "xcode.lang.objc.method.declaration",
+                "xcode.lang.objc.classmethod.declaration",
+                "xcode.lang.objc.property.declaration",
+                "xcode.lang.objc.typedef",
+                "xcode.lang.objc.block",
+                "xcode.lang.objc.bracketexpr",
+                "xcode.lang.objc.parenexpr",
+            );
+            Type = "xcode.syntax.declaration.objc.interface";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.implementation";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.toplevel";
+            Start = "xcode.lang.objc.implementation.declarator";
+            End = "@end";
+            Foldable = YES;
+            IncludeRules = (
+                "xcode.lang.objc.function.declaration",
+                "xcode.lang.objc.function.definition",
+                "xcode.lang.objc.method.definition",
+                "xcode.lang.objc.classmethod.definition",
+                "xcode.lang.objc.typedef",
+                "xcode.lang.objc.block",
+                "xcode.lang.objc.bracketexpr",
+                "xcode.lang.objc.parenexpr",
+                "xcode.lang.objc.initializer",
+            );
+            Type = "xcode.syntax.definition.objc.implementation";
+        };
+    },
+
+/****************************************************************************/
+// MARK: Methods
+/****************************************************************************/
+    
+    {
+        Identifier = "xcode.lang.objc.method.typeroot";
+        Syntax = {
+            StartChars = "@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+	    Words = ( "*", );
+	    // all are method parameters
+            Type = "xcode.syntax.method.type";
+            AltType = "xcode.syntax.method.type";
+        };
+	},
+    
+    {
+        Identifier = "xcode.lang.objc.method.parameter";
+        Syntax = {
+            StartChars = "@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+	    // all are method parameters
+            Type = "xcode.syntax.method.parameter";
+        };
+},
+    
+{ // the method name itself is part of the declarator
+        Identifier = "xcode.lang.objc.method.name";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Type = "xcode.syntax.method.declarator";
+	};
+    },
+{ // the method name itself is part of the declarator
+        Identifier = "xcode.lang.objc.classmethod.name";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Type = "xcode.syntax.classmethod.declarator";
+	};
+    },
+    // LEXER::::::  default method lexer
+    {
+        Identifier = "xcode.lang.objc.lexer.method";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.objc.method.name",
+            );
+         };
+     },
+    // LEXER::::::  default class method lexer
+    {
+        Identifier = "xcode.lang.objc.lexer.classmethod";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.objc.classmethod.name",
+            );
+         };
+     },
+    // LEXER:::::      PARAMETER TYPE
+    {
+        Identifier = "xcode.lang.objc.lexer.method.type";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.objc.attribute",
+                "xcode.lang.objc.method.typeroot",
+            );
+         };
+     },
+    // LEXER:::::::    PARAMETER NAME
+    {
+        Identifier = "xcode.lang.objc.lexer.method.parameter";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.objc.attribute",
+                "xcode.lang.objc.method.parameter",
+            );
+         };
+     },
+    {
+        Identifier = "xcode.lang.objc.method.type";
+        BasedOn = "xcode.lang.c.parenexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method.type";
+            Start = "(";
+            End = ")";
+	    Type = "xcode.syntax.method.type";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.method.minus";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method";
+            Rules = ( "-", );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.classmethod.plus";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.classmethod";
+            Rules = ( "+", );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.method.colon";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method";
+            Rules = ( ":", );
+            Type = "xcode.syntax.method.declarator";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.classmethod.colon";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.classmethod";
+            Rules = ( ":", );
+            Type = "xcode.syntax.classmethod.declarator";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.partialname";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method";
+            Rules = ( "xcode.lang.objc.method.name", );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.classmethod.partialname";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.classmethod";
+            Rules = ( "xcode.lang.objc.classmethod.name", );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.method.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method";
+            Rules = (
+                "xcode.lang.objc.method.minus",
+		"xcode.lang.objc.method.type?",
+                "xcode.lang.objc.partialname",
+                "xcode.lang.objc.method.declarator.args?",
+            );
+            Type = "xcode.syntax.method.declarator";
+        };
+    },
+    { ///////////// CLASSMETHOD DECLARATOR
+        Identifier = "xcode.lang.objc.classmethod.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.classmethod";
+            Rules = (
+                "xcode.lang.objc.classmethod.plus",
+		"xcode.lang.objc.method.type?",
+                "xcode.lang.objc.classmethod.partialname",
+                "xcode.lang.objc.classmethod.declarator.args?",
+            );
+            Type = "xcode.syntax.classmethod.declarator";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.method.declaration";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method";
+            Rules = (
+                "xcode.lang.objc.method.declarator",
+                ";",
+            );
+            Type = "xcode.syntax.declaration.method";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.method.definition";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method";
+            Rules = (
+                "xcode.lang.objc.method.declarator",
+                ";?",
+                "xcode.lang.objc.block",
+            );
+            Type = "xcode.syntax.definition.method";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.classmethod.declaration";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method";
+            Rules = (
+                "xcode.lang.objc.classmethod.declarator",
+                ";",
+            );
+            Type = "xcode.syntax.declaration.method";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.classmethod.definition";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method";
+            Rules = (
+                "xcode.lang.objc.classmethod.declarator",
+                ";?",
+                "xcode.lang.objc.block",
+            );
+            Type = "xcode.syntax.definition.method";
+        };
+    },
+    { //////////////// METHOD ARGUMENT HANDLING 
+        Identifier = "xcode.lang.objc.method.declarator.parameter";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method.parameter";
+            Rules = (
+		"xcode.lang.objc.method.parameter",
+            );
+            Type = "xcode.syntax.method.parameter";
+        };
+    },
+    { //// FIRSTARG
+        Identifier = "xcode.lang.objc.method.declarator.firstarg";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method.parameter";
+            Rules = (
+		"xcode.lang.objc.method.colon",
+		"xcode.lang.objc.method.type?",
+		"xcode.lang.objc.method.declarator.parameter",
+            );
+        };
+    },
+    { //// ALLARGS
+        Identifier = "xcode.lang.objc.method.declarator.args";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method";
+            Rules = (
+		"xcode.lang.objc.method.declarator.firstarg",
+                "xcode.lang.objc.method.declarator.moreargs*",
+                "xcode.lang.objc.method.declarator.varargs?",
+            );
+        };
+    },
+    { //// MOREARGS
+        Identifier = "xcode.lang.objc.method.declarator.moreargs";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method.parameter";
+            Rules = (
+                "xcode.lang.objc.partialname?",
+                "xcode.lang.objc.method.colon",
+                "xcode.lang.objc.method.type?",
+                "xcode.lang.objc.method.declarator.parameter",
+            );
+        };
+    },
+    { //// VARARGS
+        Identifier = "xcode.lang.objc.method.declarator.varargs";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method";
+            Rules = (
+                ",",
+                "...",
+            );
+            Type = "xcode.syntax.method.declarator";
+        };
+    },
+    /////// END METHOD ARG HANDLING	
+    { //// FIRSTARG
+        Identifier = "xcode.lang.objc.classmethod.declarator.firstarg";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method.parameter";
+            Rules = (
+		"xcode.lang.objc.classmethod.colon",
+		"xcode.lang.objc.method.type?",
+		"xcode.lang.objc.method.declarator.parameter",
+            );
+        };
+    },
+    { //// ALLARGS
+        Identifier = "xcode.lang.objc.classmethod.declarator.args";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.classmethod";
+            Rules = (
+		"xcode.lang.objc.classmethod.declarator.firstarg",
+                "xcode.lang.objc.classmethod.declarator.moreargs*",
+                "xcode.lang.objc.method.declarator.varargs?",
+            );
+        };
+    },
+    { //// MOREARGS
+        Identifier = "xcode.lang.objc.classmethod.declarator.moreargs";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.method.parameter";
+            Rules = (
+                "xcode.lang.objc.classmethod.partialname?",
+                "xcode.lang.objc.classmethod.colon",
+                "xcode.lang.objc.method.type?",
+                "xcode.lang.objc.method.declarator.parameter",
+            );
+        };
+    },
+    /////// END METHOD ARG HANDLING	
+    
+
+/****************************************************************************/
+// MARK: Functions
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.objc.function.definition";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "xcode.lang.objc.function.declarator",
+                "xcode.lang.objc.block",
+            );
+            Type = "xcode.syntax.definition.c.function";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.function.declaration";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "xcode.lang.objc.function.declarator",
+                "xcode.lang.objc.identifier?",
+                ";"
+            );
+            Type = "xcode.syntax.declaration.c.function";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.function.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "xcode.lang.objc.function.name",
+                "xcode.lang.objc.method.parenexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.function.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "xcode.lang.objc.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: Properties
+/****************************************************************************/
+    // LEXER::::::  default method lexer
+    {
+        Identifier = "xcode.lang.objc.lexer.propertytail";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.completionplaceholder",
+		"xcode.lang.objc.property.name",
+		"xcode.lang.objc.property.terminator",
+            );
+         };
+     },
+    
+    {
+        Identifier = "xcode.lang.objc.property.terminator";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+
+	    EndChar = ";" ;
+	    Type = "xcode.syntax.property.declaration";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.property.name";
+        Syntax = {
+            StartChars = "\\*\\[\\]abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "\\*\\[\\]abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+	    Words = (
+		"\\*" ,
+		"\\[" ,
+		"\\]" ,
+		);
+	    Type = "xcode.syntax.method.declarator";
+	    AltType = "xcode.syntax.method.declarator";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.property.namelist";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.propertytail";
+            Rules  = (
+	        "xcode.lang.objc.property.name+",
+	        "xcode.lang.objc.property.terminator",
+		);
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.property.declaration";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.propertytail";
+            Rules  = (
+	        "xcode.lang.objc.property.declarator",
+		"xcode.lang.objc.property.namelist",
+		);
+	    Type = "xcode.syntax.method.declarator";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.property.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "@property",
+                "xcode.lang.objc.property.options?",
+            );
+            Type = "xcode.syntax.declaration.property";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.property.options";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.property.options.lexer";
+            Start = "(";
+            End = ")";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.property.options.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.objc.property.options.identifier",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.property.options.identifier";
+        Syntax = {
+            Words = (
+                "setter",
+                "getter",
+                "readonly",
+                "readwrite",
+                "assign",
+                "retain",
+                "copy",
+                "nonatomic",
+             );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: Typedefs
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.objc.lexer.typedef";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.objc.attribute",
+                "xcode.lang.objc.typedef.end",
+                "xcode.lang.objc.identifier",
+                "xcode.lang.number",
+                "xcode.lang.objc.interestingOperators",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.lexer.typedef.name";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.objc.attribute",
+                "xcode.lang.objc.typedef.name",
+                "xcode.lang.objc.identifier",
+                "xcode.lang.number",
+                "xcode.lang.objc.interestingOperators",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.typedef";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.typedef";
+            Start = "typedef";
+            End = "xcode.lang.objc.typedef.end";
+            AltEnd = ";";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.objc.typedef.function",
+                "xcode.lang.objc.block",
+                "xcode.lang.objc.bracketexpr",
+                "xcode.lang.objc.parenexpr",
+            );
+            Type = "xcode.syntax.typedef";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.typedef.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Rules = (
+                "xcode.lang.objc.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.typedef.end";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.typedef.name";
+            Rules = (
+                "xcode.lang.objc.typedef.name",
+                ";"
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.typedef.function";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.typedef.name";
+            Rules = (
+                "(",
+                "*",
+                "xcode.lang.objc.typedef.name",
+                ")",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: Blocks
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.objc.block";
+        BasedOn = "xcode.lang.c.block";     // for text macros
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.objc.bracketexpr",
+                "xcode.lang.objc.parenexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.parenexpr";
+        BasedOn = "xcode.lang.c.parenexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Start = "(";
+            End = ")";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.objc.bracketexpr",
+                "xcode.lang.objc.block",
+                
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.objc.bracketexpr";
+        BasedOn = "xcode.lang.c.bracketexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer";
+            Start = "[";
+            End = "]";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.objc.parenexpr",
+                "xcode.lang.objc.block",
+		);
+	    Type = "xcode.syntax.brackets"; // OK?
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.objc.initializer";
+        Syntax = {
+            Tokenizer = "xcode.lang.objc.lexer.toplevel";
+            Start = "=";
+            End = ";";
+            Recursive = NO;
+            IncludeRules = (
+                "xcode.lang.objc.parenexpr",
+                "xcode.lang.objc.bracketexpr",
+            );
+        };
+    },
+)
+
