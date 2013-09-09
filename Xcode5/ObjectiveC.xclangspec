@@ -215,36 +215,13 @@
         };
     },
     
-{ /// added substantially to this list, comment out anything you
-  /// but most of these are absorbed in expression recognition
-  // so really they won't do anything, just leaving it here for
-  // experimentation
+{
         Identifier = "xcode.lang.objc.interestingOperators";
         Syntax = {
             Words = (
                 "...",
                 "->",
                 ".",
-                ":",
-                "=",
-                "!=",
-                ">",
-                ">>",
-                "<",
-                "<<",
-                "^=",
-                "&=",
-                "&&",
-                "||",
-                "^",
-                "&",
-                "|",
-                "*",
-                "/",
-                "+",
-                "-",
-                ";",
-                ",",
 		);		
             Type = "xcode.syntax.interesting";
         };
@@ -725,7 +702,7 @@
         };
     },
     { // dbx ... this will make trailing semis in the method name
-	// match the block color
+	// match the block color... (this screws up indenting :( )
         Identifier = "xcode.lang.objc.method.semicolon";
         Syntax = {
             Tokenizer = "xcode.lang.objc.lexer";
@@ -768,10 +745,13 @@
     {
         Identifier = "xcode.lang.objc.method.definition";
         Syntax = {
-            Tokenizer = "xcode.lang.objc.lexer";
+            Tokenizer = "xcode.lang.objc.lexer.classmethod";
             Rules = (
                 "xcode.lang.objc.method.declarator",
-                "xcode.lang.objc.method.semicolon?",
+		// would like to use this but it screws up
+		// tab indenting at the moment
+                //"xcode.lang.objc.method.semicolon?",
+		//";?",
                 "xcode.lang.objc.method.block",
             );
             Type = "xcode.syntax.definition.method";
@@ -787,6 +767,12 @@
                 "xcode.lang.objc.method.type?",
                 "xcode.lang.objc.partialname",
                 "xcode.lang.objc.method.declarator.args?",
+		";?", // not technically correct to be here since it's
+		// a requirement in declarations, but putting it
+		// higher up in the right spot is screwing up the
+		// block for some reason and we want it to match
+		// the rest of the color either of the declarator
+		// or the following block
             );
             Type = "xcode.syntax.method.declarator";
         };
@@ -1035,10 +1021,11 @@
     },
     { // dbx ... this will make trailing semis in the method name
 	// match the block color
+	// screws up indenting currently so don't use it
         Identifier = "xcode.lang.objc.classmethod.semicolon";
         Syntax = {
             Tokenizer = "xcode.lang.objc.lexer";
-            Rules = ( ";", );
+            Words = ( ";", );
             Type = "xcode.syntax.classmethod.block";
         };
     },
@@ -1089,7 +1076,10 @@
             Tokenizer = "xcode.lang.objc.lexer.classmethod";
             Rules = (
                 "xcode.lang.objc.classmethod.declarator",
-                "xcode.lang.objc.classmethod.semicolon?",
+		// screwing up indenting, so not using this,
+		// it's originally in place to make the semi
+		// match the block color
+//                "xcode.lang.objc.classmethod.semicolon?",
                 "xcode.lang.objc.classmethod.block",
             );
             Type = "xcode.syntax.definition.classmethod";
@@ -1105,6 +1095,12 @@
                 "xcode.lang.objc.classmethod.type?", 
                 "xcode.lang.objc.classmethod.partialname",
 		"xcode.lang.objc.classmethod.declarator.args?",
+		";?", // not technically correct to be here since it's
+		// a requirement in declarations, but putting it
+		// higher up in the right spot is screwing up the
+		// block for some reason and we want it to match
+		// the rest of the color either of the declarator
+		// or the following block
             );
             Type = "xcode.syntax.classmethod.declarator";
         };
