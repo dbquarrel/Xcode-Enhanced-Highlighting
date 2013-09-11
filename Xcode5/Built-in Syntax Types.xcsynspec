@@ -1,0 +1,469 @@
+(
+    {
+        Identifier = "xcode.syntax.plain";
+        Name = "Plain Text";
+        Color = "0.000 0.000 0.000";
+        IncludeInPrefs = YES;
+    },
+    {
+        Identifier = "xcode.syntax.comment";
+        Name = "Comments";
+        Color = "0.000 0.456 0.000";
+        IncludeInPrefs = YES;
+        IgnoreToken = YES;
+    },
+    {
+        Identifier = "xcode.syntax.comment.doc";
+        Name = "Documentation Comments";
+        Color = "0.000 0.456 0.000";
+        IncludeInPrefs = YES;
+        IgnoreToken = YES;
+    },
+        {
+            Identifier = "xcode.syntax.comment.doc.keyword";
+            Name = "Documentation Comment Keywords";
+            Color = "0.008 0.239 0.063";
+            IncludeInPrefs = YES;
+        },
+    {
+        Identifier = "xcode.syntax.string";
+        Name = "Strings";
+        Color = "0.770 0.102 0.086";
+        IncludeInPrefs = YES;
+    },
+    {
+        Identifier = "xcode.syntax.character";
+        Name = "Characters";
+        Color = "0.110 0.000 0.810";
+        IncludeInPrefs = YES;
+    },
+    {
+        Identifier = "xcode.syntax.number";
+        Name = "Numbers";
+        Color = "0.110 0.000 0.810";
+        IncludeInPrefs = YES;
+	},
+{
+    /// NOTE ... turning this rule off by commenting out
+    /// the color information will both inhibit keyword
+    /// highlighting and identifier highlighting, and enable
+    /// method name highlighting
+	    // defeating keyword type is how we stop Xcode
+	    // from highlighting method names as identifiers
+	    // though it would seem that this is backwards and
+	    // we should set the identifier rule below...
+	    // however this has the downside of stopping
+	    // project/global glass/function identififcation and
+	    // also preprocessor constants... if this connects to
+	    // any rule in the builtin-highlighting file then
+	    // it will override all identifiers color schemes
+	    // regardless of the grammar below... so we need this
+            // to either be not included in preferences, and/or have
+            // no color set, and/or have an Identifier mismatch
+            // with the Type of the xcode.lang.objc.identifier rule
+            // in the grammar
+        Identifier = "xcode.syntax.keyword";
+        Name = "Keywords";
+        Color = "0.665 0.052 0.569";
+        IncludeInPrefs = YES;
+	},
+    {
+        Identifier = "xcode.syntax.preprocessor";
+        Name = "Preprocessor Statements";
+        Color = "0.391 0.220 0.125";
+        IncludeInPrefs = YES;
+        IgnoreToken = YES;
+    },
+        {
+            Identifier = "xcode.syntax.preprocessor.include";
+            IncludeInPrefs = NO;
+        },
+    {
+        Identifier = "xcode.syntax.objc.import";
+        BasedOn = "xcode.syntax.preprocessor.include";
+        IncludeInPrefs = NO;
+    },
+    {
+        Identifier = "xcode.syntax.c.attribute";
+        IncludeInPrefs = NO;
+        IgnoreToken = YES;
+    },
+    
+    ////////////////////////////
+    /// NOTE:
+    //
+    // All of the below seem to be callback type rules that clang
+    // plugs into after running through the code, sorting out what
+    // identifiers are what, and giving the information to the syntax
+    // highlighter... if these are active they also override the
+    // method name highlighting because method names are composed of
+    // identifiers... I'm still looking for a way to let it pass through
+    // the method names without highlighting them into default (plain text)
+    // mode while preserving the highlighting information for project class
+    // etc. dbx
+    
+    // MARK: identifiers
+    // By default we do nothing. In C/C++, etc, we will look up names in the index and color them
+    {
+        Identifier = "xcode.syntax.identifier";
+//        Color = "0.000 0.000 0.000";
+//        IncludeInPrefs = YES;
+	Name = "Identifier";
+        IncludeInPrefs = NO;
+	Name = "Identifier";
+    },
+        {
+            Identifier = "xcode.syntax.identifier.plain";
+            Color = "0.000 0.000 0.000";
+	    Name = "Custom: Identifier Plain";
+	    IncludeInPrefs = YES;
+        },
+        {
+            Identifier = "xcode.syntax.identifier.class";
+            Name = "Project Class Names";
+            Color = "0.247 0.431 0.456";
+            IncludeInPrefs = YES;
+        },
+        {
+            Identifier = "xcode.syntax.identifier.function";
+            Name = "Project Function and Method Names";
+            Color = "0.149 0.278 0.294";
+            IncludeInPrefs = YES;
+            CanSetFont = NO;
+        },
+        {
+            Identifier = "xcode.syntax.identifier.constant";
+            Name = "Project Constants";
+            Color = "0.149 0.278 0.294";
+            IncludeInPrefs = YES;
+            CanSetFont = NO;
+        },
+        {
+            Identifier = "xcode.syntax.identifier.type";
+            Name = "Project Type Names";
+            Color = "0.247 0.431 0.456";
+            IncludeInPrefs = YES;
+            CanSetFont = NO;
+        },
+        {
+            Identifier = "xcode.syntax.identifier.variable";
+            Name = "Project Instance Variables and Globals";
+            Color = "0.247 0.431 0.456";
+            IncludeInPrefs = YES;
+            CanSetFont = NO;
+        },
+        {
+            Identifier = "xcode.syntax.identifier.macro";
+            Name = "Project Preprocessor Macros";
+            Color = "0.391 0.220 0.125";
+            IncludeInPrefs = YES;
+            CanSetFont = NO;
+        },
+            {
+                Identifier = "xcode.syntax.identifier.class.system";
+                Name = "Other Class Names";
+                Color = "0.359 0.149 0.601";
+                IncludeInPrefs = YES;
+                CanSetFont = NO;
+            },
+            {
+                Identifier = "xcode.syntax.identifier.function.system";
+                Name = "Other Function and Method Names";
+                Color = "0.181 0.052 0.431";
+                IncludeInPrefs = YES;
+                CanSetFont = NO;
+            },
+            {
+                Identifier = "xcode.syntax.identifier.constant.system";
+                Name = "Other Constants";
+                Color = "0.181 0.052 0.431";
+                IncludeInPrefs = YES;
+                CanSetFont = NO;
+            },
+            {
+                Identifier = "xcode.syntax.identifier.type.system";
+                Name = "Other Type Names";
+                Color = "0.359 0.149 0.601";
+                IncludeInPrefs = YES;
+                CanSetFont = NO;
+            },
+            {
+                Identifier = "xcode.syntax.identifier.variable.system";
+                Name = "Other Instance Variables and Globals";
+                Color = "0.359 0.149 0.601";
+                IncludeInPrefs = YES;
+                CanSetFont = NO;
+            },
+            {
+                Identifier = "xcode.syntax.identifier.macro.system";
+                Name = "Other Preprocessor Macros";
+                Color = "0.391 0.220 0.125";
+                IncludeInPrefs = YES;
+                CanSetFont = NO;
+            },
+
+
+    // MARK: declarations and definitions
+    // These automatically show up in the function popup
+    {
+        Identifier = "xcode.syntax.definition.function";
+        IncludeInPrefs = YES;
+	Name = "Custom: Function Definition";
+	Color = "1.000 0.000 0.000";
+    },
+    {
+    Identifier = "xcode.syntax.declaration.function";
+    Color = "0.500 0.000 0.500";
+    IncludeInPrefs = YES;
+    Name = "Custom: Function Declaration (not sure this works)";
+    },
+    {
+	Identifier = "xcode.syntax.declaration.method";
+	// not really seeing results from this one
+//	Name = "Q - Method Parameters";
+//        IncludeInPrefs = NO;
+//	Color = "0.5 0.5 0.5";
+    },
+    {
+	Identifier = "xcode.syntax.declaration.property";
+        IncludeInPrefs = NO;
+    },
+    {
+        Identifier = "xcode.syntax.typedef";
+        IncludeInPrefs = NO;
+    },
+    {
+    Identifier = "xcode.syntax.definition.class";
+        Name = "Class Definition Orig";
+            IncludeInPrefs = NO;
+    },
+        // n.b. BasedOn is used internally to see if one type should be treated like another. However, none of the other attributes are inherited through this hierarchy.
+        {
+            Identifier = "xcode.syntax.definition.objc.implementation";
+            BasedOn = "xcode.syntax.definition.class";
+            IncludeInPrefs = NO;
+            NameFormat = "@implementation %@";
+        },
+        {
+            Identifier = "xcode.syntax.declaration.objc.protocol";
+            BasedOn = "xcode.syntax.declaration.class";
+            IncludeInPrefs = NO;
+            NameFormat = "@protocol %@";
+        },
+        {
+            Identifier = "xcode.syntax.declaration.objc.interface";
+            BasedOn = "xcode.syntax.declaration.class";
+            IncludeInPrefs = NO;
+            NameFormat = "@interface %@";
+        },
+        {
+            Identifier = "xcode.syntax.declaration.java.interface";
+            BasedOn = "xcode.syntax.declaration.class";
+            IncludeInPrefs = NO;
+            NameFormat = "interface %@";
+        },
+        {
+            Identifier = "xcode.syntax.definition.java.class";
+            BasedOn = "xcode.syntax.definition.class";
+            IncludeInPrefs = NO;
+            NameFormat = "class %@";
+        },
+        {
+            Identifier = "xcode.syntax.definition.cpp.class";
+            BasedOn = "xcode.syntax.definition.class";
+            IncludeInPrefs = NO;
+            NameFormat = "class %@";
+        },
+        {
+            Identifier = "xcode.syntax.definition.c.function";
+            BasedOn = "xcode.syntax.definition.function";
+            IncludeInPrefs = NO;
+            NameFormat = "%@()";
+        },
+        {
+            Identifier = "xcode.syntax.declaration.c.function";
+            BasedOn = "xcode.syntax.declaration.function";
+            IncludeInPrefs = NO;
+            NameFormat = "%@()";
+        },
+    {
+        Identifier = "xcode.syntax.declaration.class";
+        IncludeInPrefs = NO;
+    },
+    {
+        Identifier = "xcode.syntax.declaration.struct";
+        IncludeInPrefs = NO;
+    },
+    {
+        Identifier = "xcode.syntax.declaration.enum";
+        IncludeInPrefs = NO;
+    },
+    {
+        Identifier = "xcode.syntax.declaration.union";
+        IncludeInPrefs = NO;
+    },
+    {
+        Identifier = "xcode.syntax.definition.macro";
+        IncludeInPrefs = NO;
+    },
+    {   // the name is this whole subtree
+        Identifier = "xcode.syntax.name";
+        IncludeInPrefs = NO;
+    },
+    {   // the name is made from nodes under this subtree
+        Identifier = "xcode.syntax.name.tree";
+        IncludeInPrefs = NO;
+    },
+    {   // this node is one of many that need to be concatenated together to get the full name
+        Identifier = "xcode.syntax.name.partial";
+	// this has to stay empty, will override the +/- 
+//        IncludeInPrefs = NO; // can't use this it overrides the symbols but not ids
+//	Name = "Method Names In Declaration/Definitions";
+//	Color = "1.00 0.500 0.000";
+    },
+    {
+        Identifier = "xcode.syntax.java.package";
+        IncludeInPrefs = NO;
+        NameFormat = "package %@";
+    },
+    {
+        Identifier = "xcode.syntax.java.import";
+        IncludeInPrefs = NO;
+        NameFormat = "import %@";
+    },
+
+
+    // MARK: URLs
+    {
+        Identifier = "xcode.syntax.url";
+        Name = "URLs";
+        Color = "0.055 0.055 1.000";
+        IncludeInPrefs = YES;
+        IsLink = YES;
+        URLFormat = "%@";
+    },
+        {
+            Identifier = "xcode.syntax.url.mail";
+            BasedOn = "xcode.syntax.url";
+            Color = "0.055 0.055 1.000";
+            IncludeInPrefs = NO;
+            IsLink = YES;
+            URLFormat = "mailto:%@";
+        },
+    
+    // MARK: XML
+    {
+        Identifier = "xcode.syntax.attribute";
+        Name = "Attributes";
+        Color = "0.512 0.423 0.157";
+        IncludeInPrefs = YES;
+    },
+    {
+        Identifier = "xcode.syntax.entity";
+        Color = "0.665 0.052 0.569";	// Ignored (but necessary). Converted to the Keyword color internally
+        IncludeInPrefs = NO;
+    },
+    {
+        Identifier = "xcode.syntax.entity.start";	// shows up in the funciton popup
+        Color = "0.665 0.052 0.569";	// Ignored (but necessary). Converted to the Keyword color internally
+        IncludeInPrefs = NO;
+    },
+    // MARK: Pragma mark support
+    {
+        Identifier = "xcode.syntax.mark";
+        IncludeInPrefs = NO;
+        IsMark = YES;
+    },
+
+    {//dbx
+        Identifier = "xcode.syntax.brackets";
+        Name = "Custom: Brackets";
+        IncludeInPrefs = YES;
+	Color = "1.000 0.000 0.000";
+    },
+    {//dbx
+        Identifier = "xcode.syntax.closure";
+        Name = "Custom: Blocks (Closures)";
+        IncludeInPrefs = YES;
+	Color = "0.500 0.300 1.000";
+    },
+    {//dbx
+        Identifier = "xcode.syntax.method.declarator";
+        Name = "Custom: Instance Method Name";
+        IncludeInPrefs = YES;
+	Color = "1.000 1.000 1.000";
+    },
+    {//dbx
+        Identifier = "xcode.syntax.method.type";
+        Name = "Custom: Instance Method Return Type";
+        IncludeInPrefs = YES;
+	Color = "0.000 1.000 0.000";
+    },
+    {//dbx
+        Identifier = "xcode.syntax.method.paramtype";
+        Name = "Custom: Instance Method Parameter Types";
+        IncludeInPrefs = YES;
+	Color = "0.000 1.000 0.000";
+    },
+    {//dbx
+        Identifier = "xcode.syntax.method.parameter";
+        Name = "Custom: Instance Method Parameter Names";
+        IncludeInPrefs = YES;
+	Color = "1.000 0.000 0.000";
+    },
+    {//dbx
+        Identifier = "xcode.syntax.method.block";
+        Name = "Custom: Instance Method Block";
+        IncludeInPrefs = YES;
+	Color = "1.000 0.000 0.000";
+    },
+    {//dbx
+        Identifier = "xcode.syntax.classmethod.declarator";
+        Name = "Custom: Class Method Name";
+        IncludeInPrefs = YES;
+	Color = "1.000 0.000 1.000";
+    },
+    {
+        Identifier = "xcode.syntax.definition.method";
+	// needs to stay empty, we have class/instance method blocks
+//	Name = "Custom: Method Body";
+//	Color = "1 1 1";
+	IncludeInPrefs = NO; 
+    },
+    {//dbx
+        Identifier = "xcode.syntax.classmethod.type";
+        Name = "Custom: Class Method Return Type";
+        IncludeInPrefs = YES;
+	Color = "0.000 1.000 0.000";
+    },
+    {//dbx
+        Identifier = "xcode.syntax.classmethod.parameter";
+        Name = "Custom: Class Method Parameter Names";
+        IncludeInPrefs = YES;
+	Color = "1.000 1.000 0.000";
+    },
+    {//dbx
+        Identifier = "xcode.syntax.classmethod.paramtype";
+        Name = "Custom: Class Method Parameter Types";
+        IncludeInPrefs = YES;
+	Color = "0.000 1.000 0.000";
+    },
+    {//dbx
+        Identifier = "xcode.syntax.classmethod.block";
+        Name = "Custom: Class Method Block";
+        IncludeInPrefs = YES;
+	Color = "1.000 0.000 0.000";
+    },
+    {//dbx
+        Identifier = "xcode.syntax.interesting";
+        Name = "Custom: Interesting Operators";
+        IncludeInPrefs = YES;
+	Color = "0.800 0.800 0.800";
+    },
+    {//dbx
+        Identifier = "xcode.syntax.directive";
+        Name = "Custom: Compiler Directives";
+        IncludeInPrefs = YES;
+	Color = "0.500 0.500 0.500";
+    },
+)
