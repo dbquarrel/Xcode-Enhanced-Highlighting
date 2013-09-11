@@ -1,4 +1,4 @@
-Xcode-Enhanced-Highlighting
+Xcode Enhanced Highlighting
 ===========================
 
 xclangspec files and color schemes for Xcode3 and Xcode5 that allow you to target the method names in definitions and declarations for special highlighting. For Xcode5 also supports special colors for blocks (class methods, instance methods, and closure blocks can have different colors). Some work is needed as it is not compatible with context highlighting (i.e. project identifiers).  
@@ -31,14 +31,25 @@ There is a problem with Xcode5 in that setting colors by grammar vs. setting col
 
 2. You need to install these to:
 
-/Applications/Xcode5-DP5.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/
+/Applications/Xcode5.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/
 
 3. You may have problems with other, older language specs installed
 throughout your system. I nuked everything else I found in my system.
-find / -name \*.xclangspec -print is your friend. Xcode even has two
+find / -name ObjectiveC.xclangspec -print is your friend. Xcode even has two
 copies under the .app. I nuked the other one, because at the end of the
 day YOU NEVER KNOW WHAT THE HELL XCODE IS GOING TO DO. Words to live by.
-I don't think Apple even knows. 
+I don't think Apple even knows. In particular you may need to delete these:
+
+% rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/ObjectiveC.xclangspec
+% rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/ObjectiveC++.xclangspec
+% rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/C.xclangspec
+
+This seems to be the alternate copy, and they will be used if you edit the primary in DVTFoundation.
+
+You need to remove the caches *any time you edit* the langspecs, Xcode stashes everywhere:
+
+% find /private/var/folders -name \*Xcode\* -print -exec rm -rf {} 
+% rm -rf ~/Library/Developer/Xcode/DerivedData
 
 4. These highlighting rules are not yet compatible with context highlighting
 (i.e. things that make your local class names pop out with a different color)
