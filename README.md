@@ -19,12 +19,10 @@ The following are additions for highlighting features over the standard set:
 - class method return type
 - class method parameter types
 - class method parameters
-
 - instance method names
 - instance method return type
 - instance method parameter types
 - instance method parameters
-
 - separate colors for class and instance method definition blocks
 - closure blocks ( i.e. ^{} type blocks) can be set to their own color as well
 
