@@ -24,7 +24,7 @@ There is flexiblity to set individual colors for:
 - separate colors for class and instance method definition blocks
 - closure blocks ( i.e. ^{} type blocks) can be set to their own color as well
 
-There is a problem with Xcode5 in that setting colors by grammar vs. setting colors by context (i.e. what clang/llvm hands back after parsing) seems to be incompatible so far. So using these will currently disable things like being able to special-highlight project class names. I have left notes in the grammars where the area is to focus on if someone can improve this.
+There is a problem with Xcode5/6 in that setting colors by grammar vs. setting colors by context (i.e. what clang/llvm hands back after parsing) seems to be incompatible so far. So using these will currently disable things like being able to special-highlight project class names. I have left notes in the grammars where the area is to focus on if someone can improve this.
 
 
 Special notes
@@ -89,7 +89,7 @@ cp *.dvtcolortheme \
 ```
 
 
-Again, this is tested with Xcode5 only. I have older highlighting
+Again, this is tested with Xcode5/Xcode6 only. I have older highlighting
 code that works for Xcode3. Xcode4, who knows. 
 
 Stuff you may want to know
@@ -149,5 +149,5 @@ Stuff you may want to know
     how to do it, will override project/class identifying and highlighting
     as well as some other things based on context.
 
-DBX Aug 2013
+DBX Aug 2014
 
