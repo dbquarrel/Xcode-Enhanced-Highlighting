@@ -7,9 +7,13 @@ Some sample images are included in the package. The following is a simple illust
 
 ![Highlighting Example](https://raw.githubusercontent.com/dbquarrel/Xcode-Enhanced-Highlighting/master/sample.png)
 
+Class methods can have distinctive highlighting as well to separate them from instance methods in the same file.
+
+![Highlighting Example](https://raw.githubusercontent.com/dbquarrel/Xcode-Enhanced-Highlighting/master/sample2.png)
+
 Xcode out of the box won't let you do this, unless you make some difficult modifications to the language parsing grammars. This is still a work in progress for Xcode5+, especially for the header files as the ObjC++ langspec is required for all headers and I haven't modified that yet (lots of work).
 
-There is flexiblity to set individual colors for:
+The following are additions for highlighting features over the standard set:
 
 - class method names
 - class method return type
@@ -23,6 +27,8 @@ There is flexiblity to set individual colors for:
 
 - separate colors for class and instance method definition blocks
 - closure blocks ( i.e. ^{} type blocks) can be set to their own color as well
+
+Limitations:
 
 There is a problem with Xcode5/6 in that setting colors by grammar vs. setting colors by context (i.e. what clang/llvm hands back after parsing) seems to be incompatible so far. So using these will currently disable things like being able to special-highlight project class names. I have left notes in the grammars where the area is to focus on if someone can improve this.
 
