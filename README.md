@@ -1,6 +1,8 @@
 Xcode Enhanced Highlighting
 ===========================
 
+Minior update for Xcode6 (better color scheme support)
+
 xclangspec files and color schemes for Xcode3 and Xcode5 that allow you to target the method names in definitions and declarations for special highlighting. For Xcode5 also supports special colors for blocks (class methods, instance methods, and closure blocks can have different colors). Some work is needed as it is not compatible with context highlighting (i.e. project identifiers).  
 
 I come from an Emacs background and am used to having function names in a high contrast color, which is easy to set up with Emacs highlighting packages. Xcode out of the box won't let you do this, unless you make some difficult modifications to the language parsing grammars. This is still a work in progress for Xcode5, especially for the header files as the ObjC++ langspec is required for all headers and I haven't modified that yet (lots of work).
@@ -29,52 +31,65 @@ There is a problem with Xcode5 in that setting colors by grammar vs. setting col
 
 1. *** Not tested vs. Xcode4 ***
 
-2. MAKE BACKUPS AND USE AT YOUR OWN RISK
+2. You need to install these to:
 
-3. You need to install these to:
+---
 
-/Applications/Xcode5.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/
+sudo cp *.xclangspec *.xcsynspec \
+/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/
 
-4. You may have problems with other, older language specs installed
+---
+
+3. You may have problems with other, older language specs installed
 throughout your system. I nuked everything else I found in my system.
 find / -name ObjectiveC.xclangspec -print is your friend. Xcode even has two
 copies under the .app. I nuked the other one, because at the end of the
 day YOU NEVER KNOW WHAT THE HELL XCODE IS GOING TO DO. Words to live by.
 I don't think Apple even knows. In particular you may need to delete these:
 
-####
 
-% rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/ObjectiveC.xclangspec
+---
 
-% rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/ObjectiveC++.xclangspec
+sudo rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/ObjectiveC.xclangspec
 
-% rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/C.xclangspec
+sudo rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/ObjectiveC++.xclangspec
 
-% rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/Built-in\ Syntax\ Types.xcsynspec
+sudo rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/C.xclangspec
 
-###
+---
 
 This seems to be the alternate copy, and they will be used if you edit the primary in DVTFoundation.
 
 You need to remove the caches *any time you edit* the langspecs, Xcode stashes everywhere:
 
-% find /private/var/folders -name \*Xcode\* -print -exec rm -rf {} 
-% rm -rf ~/Library/Developer/Xcode/DerivedData
+---
+ find /private/var/folders -name \*Xcode\* -print -exec rm -rf {} \;
 
-5. These highlighting rules are not yet compatible with context highlighting
+ rm -rf ~/Library/Developer/Xcode/DerivedData
+---
+
+
+4. These highlighting rules are not yet compatible with context highlighting
 (i.e. things that make your local class names pop out with a different color)
 This needs some improvement.
 
+5. MAKE BACKUPS AND USE AT YOUR OWN RISK
 
 6. Sample colorschemes are included. They are just slammed together.
 Copy colorschemes into:
 
+---
+
+cp *.dvtcolortheme \
 ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
+
+---
+
 
 Again, this is tested with Xcode5 only. I have older highlighting
 code that works for Xcode3. Xcode4, who knows. 
 
-== Stuff you may want to know if you want to play ==
+== Stuff you may want to know ==
 
    Things that were discovered in the process (if you want to improve this):
 
