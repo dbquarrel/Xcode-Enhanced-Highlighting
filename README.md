@@ -29,20 +29,30 @@ There is a problem with Xcode5 in that setting colors by grammar vs. setting col
 
 1. *** Not tested vs. Xcode4 ***
 
-2. You need to install these to:
+2. MAKE BACKUPS AND USE AT YOUR OWN RISK
+
+3. You need to install these to:
 
 /Applications/Xcode5.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/
 
-3. You may have problems with other, older language specs installed
+4. You may have problems with other, older language specs installed
 throughout your system. I nuked everything else I found in my system.
 find / -name ObjectiveC.xclangspec -print is your friend. Xcode even has two
 copies under the .app. I nuked the other one, because at the end of the
 day YOU NEVER KNOW WHAT THE HELL XCODE IS GOING TO DO. Words to live by.
 I don't think Apple even knows. In particular you may need to delete these:
 
+####
+
 % rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/ObjectiveC.xclangspec
+
 % rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/ObjectiveC++.xclangspec
+
 % rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/C.xclangspec
+
+% rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/Built-in\ Syntax\ Types.xcsynspec
+
+###
 
 This seems to be the alternate copy, and they will be used if you edit the primary in DVTFoundation.
 
@@ -51,11 +61,10 @@ You need to remove the caches *any time you edit* the langspecs, Xcode stashes e
 % find /private/var/folders -name \*Xcode\* -print -exec rm -rf {} 
 % rm -rf ~/Library/Developer/Xcode/DerivedData
 
-4. These highlighting rules are not yet compatible with context highlighting
+5. These highlighting rules are not yet compatible with context highlighting
 (i.e. things that make your local class names pop out with a different color)
 This needs some improvement.
 
-5. MAKE BACKUPS AND USE AT YOUR OWN RISK
 
 6. Sample colorschemes are included. They are just slammed together.
 Copy colorschemes into:
@@ -65,7 +74,7 @@ Copy colorschemes into:
 Again, this is tested with Xcode5 only. I have older highlighting
 code that works for Xcode3. Xcode4, who knows. 
 
-== Stuff you may want to know ==
+== Stuff you may want to know if you want to play ==
 
    Things that were discovered in the process (if you want to improve this):
 
