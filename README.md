@@ -27,18 +27,19 @@ There is flexiblity to set individual colors for:
 There is a problem with Xcode5 in that setting colors by grammar vs. setting colors by context (i.e. what clang/llvm hands back after parsing) seems to be incompatible so far. So using these will currently disable things like being able to special-highlight project class names. I have left notes in the grammars where the area is to focus on if someone can improve this.
 
 
-== Special notes ==
+Special notes
+=============
 
 1. *** Not tested vs. Xcode4 ***
 
 2. You need to install these to:
 
----
+```shell
 
 sudo cp *.xclangspec *.xcsynspec \
 /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/
 
----
+```
 
 3. You may have problems with other, older language specs installed
 throughout your system. I nuked everything else I found in my system.
@@ -48,7 +49,7 @@ day YOU NEVER KNOW WHAT THE HELL XCODE IS GOING TO DO. Words to live by.
 I don't think Apple even knows. In particular you may need to delete these:
 
 
----
+```shell
 
 sudo rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/ObjectiveC.xclangspec
 
@@ -56,17 +57,19 @@ sudo rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Ver
 
 sudo rm /Applications/Xcode.app/Contents/OtherFrameworks/XcodeEdit.framework/Versions/A/Resources/C.xclangspec
 
----
+```
 
 This seems to be the alternate copy, and they will be used if you edit the primary in DVTFoundation.
 
 You need to remove the caches *any time you edit* the langspecs, Xcode stashes everywhere:
 
----
+```shell
+
  find /private/var/folders -name \*Xcode\* -print -exec rm -rf {} \;
 
  rm -rf ~/Library/Developer/Xcode/DerivedData
----
+ 
+```
 
 
 4. These highlighting rules are not yet compatible with context highlighting
@@ -78,18 +81,19 @@ This needs some improvement.
 6. Sample colorschemes are included. They are just slammed together.
 Copy colorschemes into:
 
----
+```shell
 
 cp *.dvtcolortheme \
 ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
 
----
+```
 
 
 Again, this is tested with Xcode5 only. I have older highlighting
 code that works for Xcode3. Xcode4, who knows. 
 
-== Stuff you may want to know ==
+Stuff you may want to know
+==========================
 
    Things that were discovered in the process (if you want to improve this):
 
