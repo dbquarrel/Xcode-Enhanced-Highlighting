@@ -52,3 +52,5 @@ read REPLY\?"Want to delete the ${#CACHE} cache files found in /private/var/fold
 
 [[ "$REPLY" =~ ^([Yy])$ ]] && { rm -rf "${CACHE[@]}" }
 
+mkdir -p "${THEMEFOLDER=$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/}"
+cp -fv "$HERE/*.dvtcolortheme" "$THEMEFOLDER"
