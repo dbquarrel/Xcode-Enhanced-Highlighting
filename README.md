@@ -1,6 +1,10 @@
 Xcode Enhanced Highlighting
 ===========================
 
+NOTE: Apple finally got off its ass and supports highlighting method names differently from the rest of the code. So, thankfully, this project is no longer needed and won't be updated finally. Only took them 10 years....
+
+...............
+
 These are xclangspec files and color schemes for Xcode3 and Xcode5 that allow you to target the method names in definitions and declarations for special highlighting. For Xcode5 also supports special colors for blocks (class methods, instance methods, and closure blocks can have different colors). Some work is needed as it is not compatible with context highlighting (i.e. project identifiers).
 
 Some sample images are included in the package. The following is a simple illustration of what the highlighting additions can do. It gives the ability to pop out method names which makes legibility much greater similar to functionality available in Emacs.
